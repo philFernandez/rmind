@@ -1,4 +1,4 @@
-from remind.richcontent import ReminderTable
+from remind.richcontent import ReminderTable, rc
 from remind.model import Reminder
 
 
@@ -9,7 +9,11 @@ def entry_point():
         Reminder("3", "Do a thing and stuff"),
     ]
     tbl = ReminderTable(
-        "Test Table", color="green", border_color="blue", reminders=reminders
+        reminders,
+        style="bold green",
+        border_style="blue",
+        title="Reminder Table",
+        row_styles=["blue on green", "green on blue"],
     )
-
-    tbl.print_table()
+    rc.rule()
+    rc.print(tbl, justify="center")
