@@ -10,6 +10,6 @@ setup(
     install_requires=["Click", "rich", "sqlalchemy", "python-dotenv"],
     entry_points="""
         [console_scripts]
-        rmind=remind.scripts.rmind:entry_point
+        rmind=remind.scripts.rmind:main
     """,
 )

@@ -1,3 +1,2 @@
 # flake8: noqa
-from .models import Reminder
-from .models import session
+from .models import Reminder, Tag, session
