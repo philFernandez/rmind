@@ -2,6 +2,7 @@ from rich.table import Table
 from remind.model import Reminder
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich import box
+from rich.box import Box
 from dataclasses import dataclass, field
 
 rc = Console()
@@ -15,7 +16,7 @@ class ReminderTable:
     border_style: str = ""
     title: str = ""
     show_lines: bool = False
-    box = box.HEAVY_EDGE
+    box: Box = box.HEAVY_EDGE
     verbose: bool = False
     expand: bool = False
 
@@ -38,9 +39,14 @@ class ReminderTable:
             tbl.add_column("Date")
             tbl.add_column("Time")
             for reminder in self.reminders:
-                tbl.add_row(reminder.id, reminder.reminder, "04/1/2021", "5:00pm")
+                tbl.add_row(
+                    f"{reminder.id}",
+                    reminder.description,
+                    f"{reminder.entry_date}",
+                    f"{reminder.entry_date}",
+                )
         else:
             for reminder in self.reminders:
-                tbl.add_row(reminder.id, reminder.reminder)
+                tbl.add_row(f"{reminder.id}", reminder.description)
 
         yield tbl
