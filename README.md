@@ -10,8 +10,31 @@
 
 -   ### Ideas can later be recalled and filtered by tag(s) or as a complete list.
 
--   ### Using tags isn't a requirement, its just an option for categorizing ideas.
+-   ### Using tags is optional. It can be used as an idea dump without categories.
 
--   ### Harnesses the power of some of Python's best cli libraries to create a functional application that's easy on the eyes, and easy on the brain.
+-   ### The goal is to focus on getting your ideas recorded and categorized without focusing on the tool you're using to do it.
 
--   ### The idea is to focus on getting your ideas recorded and categorized without focusing on the tool you're using to do it.
+---
+
+I'm making this cli for myself so that I can have a simple place to _quickly_
+jot down my ideas in a unified place such that I can revisit them later
+without having to remember too much. I previously used note taking
+applications, like vimwiki, OneNote, Google Keep, but these tend to quickly
+devolve into a mess of pages and unorganized musings that asymptote towards
+worthlessness. I'm not saying these applications are worthless, they just
+don't work for me with the goal of saving and organizing my ideas. Another
+drawback for me is that some of these tools are packed with features, which I
+end up fiddling with more than I actually record my ideas.
+
+I recently started using [task
+warrior](https://github.com/GothenburgBitFactory/taskwarrior) and have found
+it to be the best thing for me so far. Its great for keeping track of active
+projects, and steps that need to be crossed off a list as completed, but I
+still feel like I need something for just jotting down random ideas that pop
+up, or random cool things that I discover and want to revisit. I can kind of
+make [task warrior](https://github.com/GothenburgBitFactory/taskwarrior) work
+for me in that way, but there are still allot of features in the way that I'd
+rather be able to strip out. I just need to be able to capture my ideas in a
+sentence or two and have the option to add tags. That way
+I can come back later and query the saved data and filter by tag(s). That is
+what this project aims to provide.
