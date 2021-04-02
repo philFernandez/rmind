@@ -16,6 +16,7 @@ class ReminderTable:
     title: str = ""
     show_lines: bool = False
     box = box.HEAVY_EDGE
+    verbose: bool = False
 
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
@@ -31,6 +32,13 @@ class ReminderTable:
             box=self.box,
             row_styles=self.row_styles,
         )
-        for reminder in self.reminders:
-            tbl.add_row(reminder.id, reminder.reminder)
+        if self.verbose:
+            tbl.add_column("Date")
+            tbl.add_column("Time")
+            for reminder in self.reminders:
+                tbl.add_row(reminder.id, reminder.reminder, "04/1/2021", "5:00pm")
+        else:
+            for reminder in self.reminders:
+                tbl.add_row(reminder.id, reminder.reminder)
+
         yield tbl

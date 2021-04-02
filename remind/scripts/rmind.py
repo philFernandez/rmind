@@ -14,6 +14,7 @@ def entry_point():
         border_style="blue",
         title="Reminder Table",
         row_styles=["blue on green", "green on blue"],
+        verbose=True,
     )
     rc.rule()
     rc.print(tbl, justify="center")
