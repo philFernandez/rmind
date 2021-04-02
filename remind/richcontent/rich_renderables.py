@@ -17,6 +17,7 @@ class ReminderTable:
     show_lines: bool = False
     box = box.HEAVY_EDGE
     verbose: bool = False
+    expand: bool = False
 
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
@@ -31,6 +32,7 @@ class ReminderTable:
             show_lines=self.show_lines,
             box=self.box,
             row_styles=self.row_styles,
+            expand=self.expand,
         )
         if self.verbose:
             tbl.add_column("Date")
