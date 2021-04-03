@@ -5,9 +5,12 @@ from remind.data import ReminderCrud
 context_settings = dict(help_option_names=["-h", "--help"])
 
 
-@click.group(context_settings=context_settings)
-def cli():
-    pass
+@click.group(context_settings=context_settings, invoke_without_command=True)
+@click.pass_context
+def cli(ctx):
+    if ctx.invoked_subcommand is None:
+        reminders = ReminderCrud.get_all()
+        click.echo(reminders)
 
 
 @cli.command()

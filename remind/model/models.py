@@ -35,12 +35,18 @@ class Reminder(Base):
     entry_date = Column(DateTime, nullable=False)
     tags = relationship("Tag", secondary=reminder_tag, back_populates="reminders")
 
-    def __init__(self, description):
+    def __init__(self, description: str):
         self.description = description
         self.entry_date = datetime.now()
 
     def __repr__(self):
-        return f"Reminder (id: {self.id}, reminder: {self.reminder})"
+        return f"""\
+Reminder
+    id: {self.id},
+    description: {self.description},
+    entry_date: {self.entry_date},
+    tags: {self.tags}
+"""
 
 
 class Tag(Base):
