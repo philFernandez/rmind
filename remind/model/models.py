@@ -12,6 +12,7 @@ from sqlalchemy import (
 from typing import Any
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.orm.relationships import RelationshipProperty
 
 cache = os.path.join(os.path.expanduser("~"), ".rmind.db")
 engine = create_engine(f"sqlite:///{cache}")
