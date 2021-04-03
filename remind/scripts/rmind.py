@@ -9,8 +9,12 @@ context_settings = dict(help_option_names=["-h", "--help"])
 @click.pass_context
 def cli(ctx):
     if ctx.invoked_subcommand is None:
-        reminders = ReminderCrud.get_all()
-        click.echo(reminders)
+        reminders: list[Reminder] = ReminderCrud.get_all()
+        for reminder in reminders:
+            click.echo(reminder.id)
+            click.echo(reminder.description)
+            click.echo(reminder.entry_date)
+            click.echo("-" * 50)
 
 
 @cli.command()

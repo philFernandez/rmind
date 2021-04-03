@@ -3,7 +3,7 @@ from remind.model import session, Reminder, Tag
 
 class ReminderCrud:
     @staticmethod
-    def get_all():
+    def get_all() -> list[Reminder]:
         return session.query(Reminder).all()
 
     @staticmethod
