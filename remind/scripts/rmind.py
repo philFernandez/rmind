@@ -11,27 +11,42 @@ context_settings = dict(help_option_names=["-h", "--help"])
 @click.option("-v", "--verbose", is_flag=True, help="Show more detail in output.")
 def cli(ctx, tag, verbose):
     if ctx.invoked_subcommand is None:
-        reminders: list[Reminder] = ReminderCrud.get_all()
         if not len(tag):  # if no "-t" options given
+            reminders: list[Reminder] = ReminderCrud.get_all()
 
-            if verbose:
+            if verbose:  # No "-t" and verbose given
                 click.echo("VERBOSE OUTPUT")
                 for reminder in reminders:
                     click.echo(reminder.id)
                     click.echo(reminder.description)
                     click.echo(reminder.entry_date)
                     click.echo("-" * 50)
-            else:
+            else:  # No options given
                 for reminder in reminders:
                     click.echo(reminder.id)
                     click.echo(reminder.description)
                     click.echo(reminder.entry_date)
                     click.echo("-" * 50)
-        else:
-            tagged_reminders: list[RemindersAndTag] = ReminderCrud.filter_by_tags(tag)
-            for tagged_reminder in tagged_reminders:
-                click.echo(tagged_reminder.reminders)
-                click.echo(tagged_reminder.tag)
+        else:  # "-t" given
+            if verbose:  # "-t" and verbose given
+                click.echo("VERBOSE OUTPUT")
+                tagged_reminders: list[RemindersAndTag] = ReminderCrud.filter_by_tags(
+                    tag
+                )
+                for tagged_reminder in tagged_reminders:
+                    click.echo(tagged_reminder.tag)
+                    for reminder in tagged_reminder.reminders:
+                        click.echo(reminder)
+                    click.echo("-" * 50)
+            else:  # just "-t" given
+                tagged_reminders: list[RemindersAndTag] = ReminderCrud.filter_by_tags(
+                    tag
+                )
+                for tagged_reminder in tagged_reminders:
+                    click.echo(tagged_reminder.tag)
+                    for reminder in tagged_reminder.reminders:
+                        click.echo(reminder)
+                    click.echo("-" * 50)
 
 
 @cli.command()
