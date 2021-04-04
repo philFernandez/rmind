@@ -51,23 +51,3 @@ class ReminderCrud:
                 queried_tag = Tag(tag_name=tag)
 
             reminder.tags.append(queried_tag)
-
-    @staticmethod
-    def filter_by_tags_LEGACY(tags: list[Tag]) -> list[tuple[list[Reminder], Tag]]:
-        reminders: list[tuple[list[Reminder], Tag]] = []
-        for tag in tags:
-            try:
-                tag_id = session.query(Tag.id).filter_by(tag_name=tag).first()[0]
-            except TypeError:
-                print(f"tag {tag} does not exist.")
-                continue
-            tag_and_reminder = (
-                session.query(Reminder)
-                .join(reminder_tag)
-                .filter(reminder_tag.c.tag_id == tag_id)
-                .filter(reminder_tag.c.reminder_id == Reminder.id)
-                .all(),
-                tag,
-            )
-            reminders.append(tag_and_reminder)
-        return reminders
