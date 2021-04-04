@@ -1,12 +1,42 @@
 from sqlalchemy.orm.relationships import RelationshipProperty
-import typing as t
-from remind.model import Reminder, Tag, session
+from remind.model import Reminder, Tag, reminder_tag, session
+from typing import NamedTuple
+
+# from collections import namedtuple
+
+# RemindersAndTag = namedtuple("RemindersAndTag", ["reminders"], "tag")
+
+
+class RemindersAndTag(NamedTuple):
+    reminders: list[Reminder]
+    tag: str
 
 
 class ReminderCrud:
     @staticmethod
     def get_all() -> list[Reminder]:
         return session.query(Reminder).all()
+
+    @staticmethod
+    def filter_by_tags(tags: tuple[str]) -> list[RemindersAndTag]:
+        reminders_and_tag: list[RemindersAndTag] = []
+        for tag in tags:
+            try:
+                tag_id = session.query(Tag.id).filter_by(tag_name=tag).first()[0]
+            except TypeError:
+                print(f"tag {tag} does not exist.")
+                continue
+            reminders_and_tag.append(
+                RemindersAndTag(
+                    session.query(Reminder)
+                    .join(reminder_tag)
+                    .filter(reminder_tag.c.tag_id == tag_id)
+                    .filter(reminder_tag.c.reminder_id == Reminder.id)
+                    .all(),
+                    tag,
+                )
+            )
+        return reminders_and_tag
 
     @staticmethod
     def save(reminder: Reminder):
@@ -21,3 +51,23 @@ class ReminderCrud:
                 queried_tag = Tag(tag_name=tag)
 
             reminder.tags.append(queried_tag)
+
+    @staticmethod
+    def filter_by_tags_LEGACY(tags: list[Tag]) -> list[tuple[list[Reminder], Tag]]:
+        reminders: list[tuple[list[Reminder], Tag]] = []
+        for tag in tags:
+            try:
+                tag_id = session.query(Tag.id).filter_by(tag_name=tag).first()[0]
+            except TypeError:
+                print(f"tag {tag} does not exist.")
+                continue
+            tag_and_reminder = (
+                session.query(Reminder)
+                .join(reminder_tag)
+                .filter(reminder_tag.c.tag_id == tag_id)
+                .filter(reminder_tag.c.reminder_id == Reminder.id)
+                .all(),
+                tag,
+            )
+            reminders.append(tag_and_reminder)
+        return reminders

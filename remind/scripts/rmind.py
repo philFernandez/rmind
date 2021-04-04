@@ -1,6 +1,6 @@
 import click
 from remind.model import Reminder
-from remind.data import ReminderCrud
+from remind.data import ReminderCrud, RemindersAndTag
 
 context_settings = dict(help_option_names=["-h", "--help"])
 
@@ -12,19 +12,26 @@ context_settings = dict(help_option_names=["-h", "--help"])
 def cli(ctx, tag, verbose):
     if ctx.invoked_subcommand is None:
         reminders: list[Reminder] = ReminderCrud.get_all()
-        if verbose:
-            click.echo("VERBOSE OUTPUT")
-            for reminder in reminders:
-                click.echo(reminder.id)
-                click.echo(reminder.description)
-                click.echo(reminder.entry_date)
-                click.echo("-" * 50)
+        if not len(tag):  # if no "-t" options given
+
+            if verbose:
+                click.echo("VERBOSE OUTPUT")
+                for reminder in reminders:
+                    click.echo(reminder.id)
+                    click.echo(reminder.description)
+                    click.echo(reminder.entry_date)
+                    click.echo("-" * 50)
+            else:
+                for reminder in reminders:
+                    click.echo(reminder.id)
+                    click.echo(reminder.description)
+                    click.echo(reminder.entry_date)
+                    click.echo("-" * 50)
         else:
-            for reminder in reminders:
-                click.echo(reminder.id)
-                click.echo(reminder.description)
-                click.echo(reminder.entry_date)
-                click.echo("-" * 50)
+            tagged_reminders: list[RemindersAndTag] = ReminderCrud.filter_by_tags(tag)
+            for tagged_reminder in tagged_reminders:
+                click.echo(tagged_reminder.reminders)
+                click.echo(tagged_reminder.tag)
 
 
 @cli.command()

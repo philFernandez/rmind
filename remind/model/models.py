@@ -41,13 +41,7 @@ class Reminder(Base):
         self.entry_date = datetime.now()
 
     def __repr__(self):
-        return f"""\
-Reminder
-    id: {self.id},
-    description: {self.description},
-    entry_date: {self.entry_date},
-    tags: {self.tags}
-"""
+        return f"Reminder (id: {self.id}, desc: {self.description}, entry_date: {self.entry_date})"
 
 
 class Tag(Base):
@@ -59,7 +53,7 @@ class Tag(Base):
     )
 
     def __repr__(self):
-        return f" Tag (id: {self.id}, tag_name: {self.tag_name}, reminders: {self.reminders} ) "
+        return f" Tag (id: {self.id}, tag_name: {self.tag_name}) "
 
 
 Base.metadata.create_all(engine)
