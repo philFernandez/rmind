@@ -20,10 +20,8 @@ class ReminderTable:
     verbose: bool = False
     expand: bool = False
 
-    def __rich_console__(
-        self, console: Console, options: ConsoleOptions
-    ) -> RenderResult:
-        tbl = Table(
+    def get_table(self) -> Table:
+        table = Table(
             "ID",
             "Reminder",
             style=self.style,
@@ -36,10 +34,10 @@ class ReminderTable:
             expand=self.expand,
         )
         if self.verbose:
-            tbl.add_column("Date")
-            tbl.add_column("Time")
+            table.add_column("Date")
+            table.add_column("Time")
             for reminder in self.reminders:
-                tbl.add_row(
+                table.add_row(
                     f"{reminder.id}",
                     reminder.description,
                     f"{reminder.entry_date.strftime('%D')}",
@@ -47,6 +45,6 @@ class ReminderTable:
                 )
         else:
             for reminder in self.reminders:
-                tbl.add_row(f"{reminder.id}", reminder.description)
+                table.add_row(f"{reminder.id}", reminder.description)
 
-        yield tbl
+        return table
