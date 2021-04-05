@@ -15,6 +15,9 @@ def cli(ctx, tag, verbose):
         if not len(tag):  # if no "-t" options given
             reminders: list[Reminder] = ReminderCrud.get_all()
             ListOfRemindersView(reminders, verbose).render_table()
+        else:
+            reminders_and_tags: list[RemindersAndTag] = ReminderCrud.filter_by_tags(tag)
+            ListOfRemindersAndTagView(reminders_and_tags, verbose).render_table()
 
 
 @cli.command()

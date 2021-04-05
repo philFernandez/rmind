@@ -42,8 +42,8 @@ class ReminderTable:
                 tbl.add_row(
                     f"{reminder.id}",
                     reminder.description,
-                    f"{reminder.entry_date.strftime('%m/%d/%Y')}",
-                    f"{reminder.entry_date.strftime('%I:%M %p')}",
+                    f"{reminder.entry_date.strftime('%D')}",
+                    f"{reminder.entry_date.strftime('%I:%m %p')}",
                 )
         else:
             for reminder in self.reminders:
