@@ -10,7 +10,7 @@ context_settings = dict(help_option_names=["-h", "--help"])
 @click.group(context_settings=context_settings, invoke_without_command=True)
 @click.pass_context
 @click.option("-t", "--tag", multiple=True, help="Filter by tag(s).")
-@click.option("-v", "--verbose", is_flag=True, help="Show more detail in output.")
+@click.option("-v", "--verbose", count=True, help="Show more detail in output.")
 def cli(ctx, tag, verbose):
     if ctx.invoked_subcommand is None:
         if not len(tag):  # if no "-t" options given

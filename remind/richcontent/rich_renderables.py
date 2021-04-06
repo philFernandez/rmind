@@ -33,7 +33,7 @@ class ReminderTable:
             row_styles=self.row_styles,
             expand=self.expand,
         )
-        if self.verbose:
+        if self.verbose == 1:
             table.add_column("Date")
             table.add_column("Time")
             for reminder in self.reminders:
@@ -42,6 +42,21 @@ class ReminderTable:
                     reminder.description,
                     f"{reminder.entry_date.strftime('%D')}",
                     f"{reminder.entry_date.strftime('%I:%m %p')}",
+                )
+        elif self.verbose >= 2:
+            table.add_column("Date")
+            table.add_column("Time")
+            table.add_column("Tags")
+            for reminder in self.reminders:
+                tag_names: list[str] = []
+                for tag in reminder.tags:
+                    tag_names.append(tag.tag_name)
+                table.add_row(
+                    f"{reminder.id}",
+                    reminder.description,
+                    f"{reminder.entry_date.strftime('%D')}",
+                    f"{reminder.entry_date.strftime('%I:%m %p')}",
+                    f"{tag_names}",
                 )
         else:
             for reminder in self.reminders:
