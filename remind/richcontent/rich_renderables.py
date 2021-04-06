@@ -48,9 +48,7 @@ class ReminderTable:
             table.add_column("Time")
             table.add_column("Tags")
             for reminder in self.reminders:
-                tag_names: list[str] = []
-                for tag in reminder.tags:
-                    tag_names.append(tag.tag_name)
+                tag_names: list[str] = [tag.tag_name for tag in reminder.tags]
                 tags = ", ".join(tag_names)
                 table.add_row(
                     f"{reminder.id}",
