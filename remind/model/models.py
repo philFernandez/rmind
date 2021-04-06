@@ -12,9 +12,18 @@ from sqlalchemy import (
 from typing import Any
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
-from sqlalchemy.orm.relationships import RelationshipProperty
+from dotenv import load_dotenv
 
-cache = os.path.join(os.path.expanduser("~"), ".rmind.db")
+load_dotenv()
+APP_MODE = os.getenv("APP_MODE")
+print(f"APP_MODE : {APP_MODE}")
+
+cache = (
+    "test_rmind.db"
+    if APP_MODE == "debug"
+    else os.path.join(os.path.expanduser("~"), ".rmind.db")
+)
+
 engine = create_engine(f"sqlite:///{cache}")
 Session = sessionmaker()
 Session.configure(bind=engine)

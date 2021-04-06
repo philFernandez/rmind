@@ -1,6 +1,16 @@
+import os
 from remind.scripts.rmind import cli
 from click.testing import CliRunner
 from remind.scripts import cli, add, delete
+import dotenv
+
+
+def set_test_env(env: str):
+    dotenv_file = dotenv.find_dotenv()
+    dotenv.load_dotenv(dotenv_file)
+    os.environ["APP_MODE"] = env
+    dotenv.set_key(dotenv_file, "APP_MODE", os.environ["APP_MODE"])  # type: ignore
+
 
 # Need setup test db with ENV VAR trigger
 def test_add():
@@ -13,9 +23,11 @@ def test_delete():
     runner = CliRunner()
     result = runner.invoke(delete, ["1"])
     assert result.exit_code == 0
-    print(result.output)
+    print(result.exc_info)
 
 
 if __name__ == "__main__":
+    # set_test_env("debug")
     test_add()
     test_delete()
+    # set_test_env("")
