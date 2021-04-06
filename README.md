@@ -1,8 +1,11 @@
 # `rmind` reminder cli
 
+    Currently in development phase.
+
 ### TOC
 
 -   [About](#about)
+-   [Usage](#usage)
 -   [Install Tab Completion](#install-tab-completion)
 -   [Motivation](#motivation)
 
@@ -19,6 +22,27 @@
 -   #### Using tags is optional. It can be used as an idea dump without categories.
 
 -   #### The goal is to focus on getting your ideas recorded and categorized without focusing on the tool you're using to do it.
+
+## Usage
+
+-   #### Add
+    -   `rmind add`
+        -   invokes a prompt asking for your input.
+    -   `rmind add -a 'My awesome note to remember'`
+        -   bypasses the prompt and saves input given after `-a`.
+    -   `rmind add -t some_tag -a 'Awesome note'`
+        -   saves input and association with tag given after `-t`.
+        -   The `-t` option can be given multiple times for multiple tags.
+        -   The `-a` option can be omitted to invoke a prompt for your input here too.
+-   #### Read
+    -   `rmind`
+        -   returns all currently saved notes in tabular form.
+    -   `rmind -t some_tag`
+        -   returns all currently saved notes that are tagged with `some_tag` in tabular form.
+        -   `-t` option can be given multiple times.
+    -   `rmind -v`
+        -   returns all currently saved notes with additional information such as entry date and time in tabular form.
+        -   This can also be used with the `-t` option.
 
 ## Install Tab Completion
 
