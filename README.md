@@ -43,6 +43,8 @@
     -   `rmind -v`
         -   returns all currently saved notes with additional information such as entry date and time in tabular form.
         -   This can also be used with the `-t` option.
+    -   `rmind -vv`
+        -   same as `-v` but shows additional "Tags" column in tabular output.
 
 ## Install Tab Completion
 
