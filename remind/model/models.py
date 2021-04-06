@@ -12,9 +12,11 @@ from sqlalchemy import (
 from typing import Any
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
-from dotenv import load_dotenv
+import dotenv
 
-load_dotenv()
+dotenv_file = dotenv.find_dotenv()
+dotenv.load_dotenv(dotenv_file)
+
 APP_MODE = os.getenv("APP_MODE")
 print(f"APP_MODE : {APP_MODE}")
 
