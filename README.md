@@ -16,6 +16,23 @@
 
 ---
 
+## Install tab completion
+
+Add one of the following to your shell's startup file.
+
+<!-- eg. `~/.zlogin` or `~/.zshrc` for zsh, `~/.profile` or `~/.bashrc` for bash, and `~/.config/fish/completions/rmind.fish` for fish. -->
+
+-   #### For ZSH - `~/.zshrc` or `~/.zlogin`
+    -   #### `eval "$(_RMIND_COMPLETE=source_zsh rmind)"`
+-   #### For BASH - `~/.bashrc` or `~/.profile`
+    -   #### `eval "$(_RMIND_COMPLETE=source_bash rmind)"`
+-   #### For FISH - `~/.config/fish/completions/rmind.fish`
+    -   #### `eval "$(_RMIND_COMPLETE=source_fish rmind)"`
+
+---
+
+## Motivation
+
 I'm making this cli for myself so that I can have a simple place to _quickly_
 jot down my ideas in a unified place such that I can revisit them later
 without having to remember too much. I previously used note taking
