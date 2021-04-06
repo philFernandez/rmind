@@ -1,22 +1,26 @@
 # `rmind` reminder cli
 
----
+### TOC
 
--   ### Loosely inspired by [`task` warrior](https://github.com/GothenburgBitFactory/taskwarrior).
+-   [About](#about)
+-   [Install Tab Completion](#install-tab-completion)
+-   [Motivation](#motivation)
 
--   ### The goal is to offer a less feature rich alternative.
+## About
 
--   ### Something for quickly jotting down and organizing concise ideas with user defined tags.
+-   ##### Loosely inspired by [`task` warrior](https://github.com/GothenburgBitFactory/taskwarrior).
 
--   ### Ideas can later be recalled and filtered by tag(s) or as a complete list.
+-   ##### The goal is to offer a less feature rich alternative.
 
--   ### Using tags is optional. It can be used as an idea dump without categories.
+-   ##### Something for quickly jotting down and organizing concise ideas with user defined tags.
 
--   ### The goal is to focus on getting your ideas recorded and categorized without focusing on the tool you're using to do it.
+-   ##### Ideas can later be recalled and filtered by tag(s) or as a complete list.
 
----
+-   ##### Using tags is optional. It can be used as an idea dump without categories.
 
-## Install tab completion
+-   ##### The goal is to focus on getting your ideas recorded and categorized without focusing on the tool you're using to do it.
+
+## Install Tab Completion
 
 Add one of the following to your shell's startup file.
 
