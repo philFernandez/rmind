@@ -2,10 +2,10 @@ import os
 import dotenv
 
 
-def set_test_env(env: str):
+def set_test_env(mode: str):
     dotenv_file = dotenv.find_dotenv()
     dotenv.load_dotenv(dotenv_file)
-    os.environ["APP_MODE"] = env
+    os.environ["APP_MODE"] = mode
     dotenv.set_key(dotenv_file, "APP_MODE", os.environ["APP_MODE"])  # type: ignore
 
 

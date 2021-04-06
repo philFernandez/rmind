@@ -21,7 +21,7 @@ APP_MODE = os.getenv("APP_MODE")
 print(f"APP_MODE : {APP_MODE}")
 
 cache = (
-    "test_rmind.db"
+    ".test.db"
     if APP_MODE == "debug"
     else os.path.join(os.path.expanduser("~"), ".rmind.db")
 )
