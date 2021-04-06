@@ -1,0 +1,1 @@
+from .rmind import cli, add, delete
