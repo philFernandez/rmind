@@ -51,12 +51,13 @@ class ReminderTable:
                 tag_names: list[str] = []
                 for tag in reminder.tags:
                     tag_names.append(tag.tag_name)
+                tags = ", ".join(tag_names)
                 table.add_row(
                     f"{reminder.id}",
                     reminder.description,
                     f"{reminder.entry_date.strftime('%D')}",
                     f"{reminder.entry_date.strftime('%I:%m %p')}",
-                    f"{tag_names}",
+                    f"{tags}",
                 )
         else:
             for reminder in self.reminders:
