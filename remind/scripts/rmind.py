@@ -1,7 +1,8 @@
+from typing import Union
 import click
 from remind.model import Reminder
 from remind.data import ReminderCrud, RemindersAndTag
-from remind.view import ListOfRemindersView, ListOfRemindersAndTagView
+from remind.view import ListOfRemindersView, ListOfRemindersAndTagView, display_deleted
 
 context_settings = dict(help_option_names=["-h", "--help"])
 
@@ -31,13 +32,19 @@ def cli(ctx, tag, verbose):
 def add(add, tag):
     """
     rmind add [-a] <your idea/reminder>
-
-    prompts for input is -a is ommited.
     """
     reminder = Reminder(add)
     if len(tag):
         ReminderCrud.tag_reminder(tag, reminder)
     ReminderCrud.save(reminder)
+
+
+@cli.command()
+@click.argument("id", type=int)
+def delete(id: int):
+    deleted_reminder: Union[Reminder, None] = ReminderCrud.delete_by_id(id)
+    if deleted_reminder is not None:
+        display_deleted(deleted_reminder)
 
 
 def main():

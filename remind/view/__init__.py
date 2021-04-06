@@ -1,1 +1,1 @@
-from .views import ListOfRemindersView, ListOfRemindersAndTagView
+from .views import ListOfRemindersView, ListOfRemindersAndTagView, display_deleted

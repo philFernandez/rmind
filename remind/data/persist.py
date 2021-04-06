@@ -18,6 +18,35 @@ class ReminderCrud:
         return session.query(Reminder).all()
 
     @staticmethod
+    def save(reminder: Reminder):
+        session.add(reminder)
+        session.commit()
+
+    @staticmethod
+    def delete_by_id(id: int):
+        reminder: Reminder = session.query(Reminder).get(id)
+        if reminder is not None:
+            for tag in reminder.tags:
+                reminder_tag_query = (
+                    # check association table to check if tags associated with deleted reminder
+                    # are associated with any other reminders. If they're not, delete them.
+                    session.query(reminder_tag)
+                    .filter_by(tag_id=tag.id)
+                    .all()
+                )
+                if len(reminder_tag_query) == 1:
+                    # Tag is only associated with one reminder, the one being deleted, so delete tag too
+                    session.delete(tag)
+
+            session.delete(reminder)
+            session.commit()
+
+            return reminder
+
+        else:
+            return None
+
+    @staticmethod
     def filter_by_tags(tags: tuple[str]) -> list[RemindersAndTag]:
         reminders_and_tag: list[RemindersAndTag] = []
         for tag in tags:
@@ -37,11 +66,6 @@ class ReminderCrud:
                 )
             )
         return reminders_and_tag
-
-    @staticmethod
-    def save(reminder: Reminder):
-        session.add(reminder)
-        session.commit()
 
     @staticmethod
     def tag_reminder(tags: list[Tag], reminder: Reminder):
