@@ -8,17 +8,17 @@
 
 ## About
 
--   ##### Loosely inspired by [`task` warrior](https://github.com/GothenburgBitFactory/taskwarrior).
+-   #### Loosely inspired by [`task` warrior](https://github.com/GothenburgBitFactory/taskwarrior).
 
--   ##### The goal is to offer a less feature rich alternative.
+-   #### The goal is to offer a less feature rich alternative.
 
--   ##### Something for quickly jotting down and organizing concise ideas with user defined tags.
+-   #### Something for quickly jotting down and organizing concise ideas with user defined tags.
 
--   ##### Ideas can later be recalled and filtered by tag(s) or as a complete list.
+-   #### Ideas can later be recalled and filtered by tag(s) or as a complete list.
 
--   ##### Using tags is optional. It can be used as an idea dump without categories.
+-   #### Using tags is optional. It can be used as an idea dump without categories.
 
--   ##### The goal is to focus on getting your ideas recorded and categorized without focusing on the tool you're using to do it.
+-   #### The goal is to focus on getting your ideas recorded and categorized without focusing on the tool you're using to do it.
 
 ## Install Tab Completion
 
