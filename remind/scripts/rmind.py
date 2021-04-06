@@ -31,7 +31,12 @@ def cli(ctx, tag, verbose):
 @click.option("-t", "--tag", help="Add tag(s) to your note.", multiple=True)
 def add(add, tag):
     """
-    rmind add [-a] <your idea/reminder>
+    Add a new note/reminder.
+
+    ex:
+    `rmind add -a 'Your note or idea!'`
+
+    Will prompt for note if -a is omitted.
     """
     reminder = Reminder(add)
     if len(tag):
@@ -41,10 +46,19 @@ def add(add, tag):
 
 @cli.command()
 @click.argument("id", type=int)
-def delete(id: int):
+@click.option(
+    "-v", "--verbose", help="Show entry date and time of deleted.", is_flag=True
+)
+def delete(id: int, verbose: bool):
+    """
+    Delete note/reminder with specified id.
+
+    ex:
+    `rmind delete 1`
+    """
     deleted_reminder: Union[Reminder, None] = ReminderCrud.delete_by_id(id)
     if deleted_reminder is not None:
-        display_deleted(deleted_reminder)
+        display_deleted(deleted_reminder, verbose)
 
 
 def main():

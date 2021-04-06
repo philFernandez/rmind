@@ -38,8 +38,8 @@ class ListOfRemindersAndTagView:
             rc.print(panel, justify="left")
 
 
-def display_deleted(reminder: Reminder):
+def display_deleted(reminder: Reminder, verbose: bool):
     r: list[Reminder] = [reminder]
-    table = ReminderTable(r)
-    rc.rule(title=":litter_in_bin_sign: Deleted")
+    table = ReminderTable(r, verbose=verbose)
+    rc.rule(title=":litter_in_bin_sign: [bold white]Deleted", style="red")
     rc.print(table.get_table())
