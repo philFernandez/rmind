@@ -2,7 +2,12 @@ from typing import Union
 import click
 from remind.model import Reminder
 from remind.data import ReminderCrud, RemindersAndTag
-from remind.view import ListOfRemindersView, ListOfRemindersAndTagView, display_deleted
+from remind.view import (
+    ListOfRemindersView,
+    ListOfRemindersAndTagView,
+    display_deleted,
+    display_updated,
+)
 
 context_settings = dict(help_option_names=["-h", "--help"])
 
@@ -54,7 +59,7 @@ def add(add, tag):
 )
 def update(id, update):
     return_status = ReminderCrud.update_by_id(id, update)
-    click.echo(f"return_status : {return_status}")
+    display_updated(id, update, return_status)
 
 
 @cli.command()

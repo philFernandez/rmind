@@ -1,9 +1,10 @@
 from dataclasses import dataclass
+
+from rich.table import Table
 from remind.data.persist import RemindersAndTag
 from remind.richcontent import ReminderTable, rc
 from remind.model import Reminder, Tag
 from rich.panel import Panel
-from rich.align import Align
 
 
 @dataclass
@@ -38,6 +39,17 @@ class ListOfRemindersAndTagView:
             print()
 
             rc.print(panel, justify="left")
+
+
+def display_updated(id: int, updated_text: str, status: int):
+    if status:
+        rc.rule(":+1: [bold white]Updated", style="green")
+        table = Table("ID", "Reminder")
+        table.add_row(f"{id}", updated_text)
+        rc.print(table)
+    else:
+        rc.rule(":-1: [bold white]Not Updated", style="yellow")
+        rc.print(f"ID {id} does not exist.")
 
 
 def display_deleted(reminder: Reminder, verbose: bool):
