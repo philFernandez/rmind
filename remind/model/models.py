@@ -22,7 +22,7 @@ print(f"APP_MODE : {APP_MODE}")
 
 cache = (
     ".test.db"
-    if APP_MODE == "debug"
+    if APP_MODE == "test"
     else os.path.join(os.path.expanduser("~"), ".rmind.db")
 )
 
