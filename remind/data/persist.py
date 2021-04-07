@@ -1,4 +1,3 @@
-from sqlalchemy.orm.relationships import RelationshipProperty
 from remind.model import Reminder, Tag, reminder_tag, session
 from typing import NamedTuple
 
@@ -23,11 +22,15 @@ class ReminderCrud:
         session.commit()
 
     @staticmethod
-    def update_by_id(id: int, new_description: str):
-        session.query(Reminder).filter(Reminder.id == id).update(
-            {"description": new_description}, synchronize_session="fetch"
+    def update_by_id(id: int, new_description: str) -> int:
+        query_found = (
+            session.query(Reminder)
+            .filter(Reminder.id == id)
+            .update({"description": new_description}, synchronize_session="fetch")
         )
-        session.commit()
+        if query_found:
+            session.commit()
+        return query_found
 
     @staticmethod
     def delete_by_id(id: int):

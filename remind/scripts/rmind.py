@@ -53,7 +53,8 @@ def add(add, tag):
     help="Input text directly and skip prompt.",
 )
 def update(id, update):
-    ReminderCrud.update_by_id(id, update)
+    return_status = ReminderCrud.update_by_id(id, update)
+    click.echo(f"return_status : {return_status}")
 
 
 @cli.command()
