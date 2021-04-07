@@ -12,7 +12,9 @@ class ListOfRemindersView:
     verbose: bool
 
     def render_table(self):
-        table = ReminderTable(self.reminder_list, verbose=self.verbose).get_table()
+        table = ReminderTable(
+            self.reminder_list, verbose=self.verbose, border_style="green"
+        ).get_table()
         rc.print(table)
 
 
