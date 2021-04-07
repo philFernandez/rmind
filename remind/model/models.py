@@ -14,12 +14,15 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 import dotenv
 
+# Read .env file to determine if we are in "test" mode
 dotenv_file = dotenv.find_dotenv()
 dotenv.load_dotenv(dotenv_file)
-
 APP_MODE = os.getenv("APP_MODE")
-print(f"APP_MODE : {APP_MODE}")
 
+# If we are in "test" mode then use temp ".test.db" for operations.
+# Program execution will take place from "test/test_rmind.py".
+# If we are not in "test" mode ".rmind.db" in the user's home
+# directory is used for normal operations.
 cache = (
     ".test.db"
     if APP_MODE == "test"
@@ -32,6 +35,8 @@ Session.configure(bind=engine)
 Base = declarative_base()  # type: Any
 session = Session()
 
+
+# Association table for many-to-many relationship between Reminder + Tag entities.
 reminder_tag = Table(
     "reminder_tag",
     Base.metadata,
