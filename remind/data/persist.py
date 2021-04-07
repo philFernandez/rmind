@@ -23,6 +23,13 @@ class ReminderCrud:
         session.commit()
 
     @staticmethod
+    def update_by_id(id: int, new_description: str):
+        session.query(Reminder).filter(Reminder.id == id).update(
+            {"description": new_description}, synchronize_session="fetch"
+        )
+        session.commit()
+
+    @staticmethod
     def delete_by_id(id: int):
         reminder: Reminder = session.query(Reminder).get(id)
         if reminder is not None:

@@ -47,6 +47,18 @@ def add(add, tag):
 @cli.command()
 @click.argument("id", type=int)
 @click.option(
+    "-u",
+    "--update",
+    prompt="Type your updated idea",
+    help="Input text directly and skip prompt.",
+)
+def update(id, update):
+    ReminderCrud.update_by_id(id, update)
+
+
+@cli.command()
+@click.argument("id", type=int)
+@click.option(
     "-v", "--verbose", help="Show entry date and time of deleted.", is_flag=True
 )
 def delete(id: int, verbose: bool):
