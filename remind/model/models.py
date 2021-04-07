@@ -48,7 +48,7 @@ reminder_tag = Table(
 class Reminder(Base):
     __tablename__ = "reminder"
     id = Column(Integer, primary_key=True)
-    description = Column(String, nullable=False, unique=True)
+    description = Column(String, nullable=False)
     entry_date = Column(DateTime, nullable=False)
     tags = relationship("Tag", secondary=reminder_tag, back_populates="reminders")
 
