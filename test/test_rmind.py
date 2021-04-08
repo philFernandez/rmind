@@ -37,8 +37,10 @@ def test():
             assert result.exit_code == 0
         except AssertionError:
             rich_console.print_exception()
-            rich_console.rule(title="[bold red]underlying exception", style="red")
-            rich_console.print(result.exception)
+            underlying = result.exception
+            if len(str(underlying)):
+                rich_console.rule(title="[bold red]underlying exception", style="red")
+                rich_console.print(underlying)
             post_test(1)
         rich_console.print(":white_heavy_check_mark: [green b]test_rmind[/green b]")
 
@@ -50,8 +52,10 @@ def test():
             assert result.exit_code == 0
         except AssertionError:
             rich_console.print_exception()
-            rich_console.rule(title="[bold red]underlying exception", style="red")
-            rich_console.print(result.exception)
+            underlying = result.exception
+            if len(str(underlying)):
+                rich_console.rule(title="[bold red]underlying exception", style="red")
+                rich_console.print(underlying)
             post_test(1)
         rich_console.print(":white_heavy_check_mark: [green b]test_add[/green b]")
 
@@ -62,8 +66,10 @@ def test():
             assert result.exit_code == 0
         except AssertionError:
             rich_console.print_exception()
-            rich_console.rule(title="[bold red]underlying exception", style="red")
-            rich_console.print(result.exception)
+            underlying = result.exception
+            if len(str(underlying)):
+                rich_console.rule(title="[bold red]underlying exception", style="red")
+                rich_console.print(underlying)
             post_test(1)
         rich_console.print(":white_heavy_check_mark: [green b]test_delete[/green b]")
 
@@ -74,8 +80,10 @@ def test():
             assert result.exit_code == 0
         except AssertionError:
             rich_console.print_exception()
-            rich_console.rule(title="[bold red]underlying exception", style="red")
-            rich_console.print(result.exception)
+            underlying = result.exception
+            if len(str(underlying)):
+                rich_console.rule(title="[bold red]underlying exception", style="red")
+                rich_console.print(underlying)
             post_test(1)
         rich_console.print(":white_heavy_check_mark: [green b]test_update[/green b]")
 
