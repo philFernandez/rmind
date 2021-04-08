@@ -15,8 +15,8 @@ class ListOfRemindersView:
     def render_table(self):
         table = ReminderTable(
             self.reminder_list, verbose=self.verbose, border_style="green"
-        ).get_table()
-        rc.print(table)
+        )
+        rc.print(table.get_table())
 
 
 @dataclass
