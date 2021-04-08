@@ -1,1 +1,1 @@
-from .rmind import cli, add, delete
+from .rmind import cli, add, delete, update
