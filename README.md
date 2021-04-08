@@ -1,4 +1,4 @@
-# `rmind`
+<h1>`rmind`</h1>
 
 ## :ledger: A notebook cli
 
