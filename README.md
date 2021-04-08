@@ -1,4 +1,4 @@
-# `rmind` reminder cli
+# `rmind` reminder cli :ledger:
 
     Currently in development phase.
 
