@@ -1,4 +1,4 @@
-# :ledger: `rmind` reminder cli
+# :ledger: `rmind` notebook cli
 
     Currently in development phase.
 
