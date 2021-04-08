@@ -92,8 +92,14 @@ def test():
 
 
 if __name__ == "__main__":
+    print()
+    rich_console.rule(
+        title=":zap: [bold white]Starting CLI Tests[/bold white] :zap:", style="green"
+    )
     pre_test("test")
     test()
     post_test(0)
-    rich_console.rule(style="green")
-    rich_console.print(f":white_heavy_check_mark: [green]{len(tests)} tests passed.")
+    rich_console.rule(
+        title=f":white_heavy_check_mark: [green]{len(tests)} tests passed.",
+        style="green",
+    )
