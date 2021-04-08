@@ -79,12 +79,13 @@ Add one of the following to your shell's startup file.
 I'm making this cli for myself so that I can have a simple place to _quickly_
 jot down my ideas in a unified place such that I can revisit them later
 without having to remember too much. I previously used note taking
-applications, like vimwiki, OneNote, Google Keep, but these tend to quickly
-devolve into a mess of pages and unorganized musings that asymptote towards
-worthlessness. I'm not saying these applications are worthless, they just
-don't work for me with the goal of saving and organizing my ideas. Another
-drawback for me is that some of these tools are packed with features, which I
-end up fiddling with more than I actually record my ideas.
+applications, like [vimwiki](https://github.com/vimwiki/vimwiki), OneNote,
+Google Keep, but these tend to quickly devolve into a mess of pages and
+unorganized musings that asymptote towards worthlessness. I'm not saying
+these applications are worthless, they just don't work for me with the goal
+of saving and organizing my ideas. Another drawback for me is that some of
+these tools are packed with features, which I end up fiddling with more than
+I actually record my ideas.
 
 I recently started using [task
 warrior](https://github.com/GothenburgBitFactory/taskwarrior) and have found
