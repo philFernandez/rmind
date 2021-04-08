@@ -6,6 +6,10 @@
 
 -   [About](#about)
 -   [Usage](#usage)
+    -   [Create](#create)
+    -   [Read](#read)
+    -   [Update](#update)
+    -   [Delete](#delete)
 -   [Install Tab Completion](#install-tab-completion)
 -   [Motivation](#motivation)
 
@@ -25,15 +29,15 @@
 
 ## Usage
 
--   #### Add
+-   #### Create
     -   `rmind add`
         -   invokes a prompt asking for your input.
     -   `rmind add -a 'My awesome note to remember'`
         -   bypasses the prompt and saves input given after `-a`.
     -   `rmind add -t some_tag -a 'Awesome note'`
         -   saves input and association with tag given after `-t`.
-        -   The `-t` option can be given multiple times for multiple tags.
-        -   The `-a` option can be omitted to invoke a prompt for your input here too.
+        -   `-t` option can be given multiple times for multiple tags.
+        -   `-a` option can be omitted to invoke a prompt for your input here too.
 -   #### Read
     -   `rmind`
         -   returns all currently saved notes in tabular form.
@@ -45,6 +49,15 @@
         -   This can also be used with the `-t` option.
     -   `rmind -vv`
         -   same as `-v` but shows additional "Tags" column in tabular output.
+-   #### Update
+    -   `rmind update [id] -u 'Updated awesome note to remember'`
+        -   updates entry with id `[id]` if the id exists in the database.
+        -   displays output letting user know if update succeeded.
+        -   `-u` option can be omitted to invoke a prompt for your input.
+-   #### Delete
+    -   `rmind delete [id]`
+        -   deletes entry with id `[id]` if the id exists in the database.
+        -   displays output letting user know if update succeeded.
 
 ## Install Tab Completion
 
