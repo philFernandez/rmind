@@ -57,16 +57,15 @@ def add(add, tag):
     prompt="Type your updated idea",
     help="Input text directly and skip prompt.",
 )
-def update(id, update):
+@click.option("-v", "--verbose", count=True, help="Show more detail in output.")
+def update(id, update, verbose):
     return_status = ReminderCrud.update_by_id(id, update)
-    display_updated(id, update, return_status)
+    display_updated(id, return_status, verbose)
 
 
 @cli.command()
 @click.argument("id", type=int)
-@click.option(
-    "-v", "--verbose", help="Show entry date and time of deleted.", is_flag=True
-)
+@click.option("-v", "--verbose", count=True, help="Show more detail in output.")
 def delete(id: int, verbose: bool):
     """
     Delete note/reminder with specified id.

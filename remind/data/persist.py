@@ -22,6 +22,11 @@ class ReminderCrud:
         session.commit()
 
     @staticmethod
+    def get_by_id(id: int) -> Reminder:
+        reminder: Reminder = session.query(Reminder).filter(Reminder.id == id).first()
+        return reminder
+
+    @staticmethod
     def update_by_id(id: int, new_description: str) -> int:
         query_found = (
             session.query(Reminder)
