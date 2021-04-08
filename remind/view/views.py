@@ -5,6 +5,7 @@ from remind.data.persist import RemindersAndTag, ReminderCrud
 from remind.richcontent import ReminderTable, rc
 from remind.model import Reminder, Tag
 from rich.panel import Panel
+from random import randint
 
 
 @dataclass
@@ -57,3 +58,12 @@ def display_deleted(reminder: Reminder, verbose: bool):
     table = ReminderTable(r, verbose=verbose).get_table()
     rc.rule(title=":litter_in_bin_sign: [bold white]Deleted", style="red")
     rc.print(table)
+
+
+def empty_view():
+    messages = [
+        ":dog2: Wow, such empty! :dog2:",
+        ":crescent_moon: Nothing to see here :crescent_moon:",
+    ]
+    idx = randint(0, len(messages) - 1)
+    rc.print(messages[idx])

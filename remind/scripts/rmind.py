@@ -7,6 +7,7 @@ from remind.view import (
     ListOfRemindersAndTagView,
     display_deleted,
     display_updated,
+    empty_view,
 )
 
 context_settings = dict(help_option_names=["-h", "--help"])
@@ -25,7 +26,10 @@ def cli(ctx, tag, verbose):
     if ctx.invoked_subcommand is None:
         if not len(tag):  # if no "-t" options given
             reminders: list[Reminder] = ReminderCrud.get_all()
-            ListOfRemindersView(reminders, verbose).render_table()
+            if len(reminders):
+                ListOfRemindersView(reminders, verbose).render_table()
+            else:
+                empty_view()
         else:
             reminders_and_tags: list[RemindersAndTag] = ReminderCrud.filter_by_tags(tag)
             ListOfRemindersAndTagView(reminders_and_tags, verbose).render_table()

@@ -3,4 +3,5 @@ from .views import (
     ListOfRemindersAndTagView,
     display_deleted,
     display_updated,
+    empty_view,
 )
