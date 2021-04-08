@@ -17,6 +17,11 @@ context_settings = dict(help_option_names=["-h", "--help"])
 @click.option("-t", "--tag", multiple=True, help="Filter by tag(s).")
 @click.option("-v", "--verbose", count=True, help="Show more detail in output.")
 def cli(ctx, tag, verbose):
+    """
+    Running `rmind [OPTIONS]` without any command returns saved data.
+
+    Try `rmind COMMAND -h` for help with specific command.
+    """
     if ctx.invoked_subcommand is None:
         if not len(tag):  # if no "-t" options given
             reminders: list[Reminder] = ReminderCrud.get_all()
@@ -59,6 +64,14 @@ def add(add, tag):
 )
 @click.option("-v", "--verbose", count=True, help="Show more detail in output.")
 def update(id, update, verbose):
+    """
+    Update note/reminder with specified id.
+
+    ex:
+    `rmind upate 1 -u 'Some updated note'`
+
+    Will prompt for update if -u is omitted.
+    """
     return_status = ReminderCrud.update_by_id(id, update)
     display_updated(id, return_status, verbose)
 
