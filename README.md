@@ -1,4 +1,6 @@
-# :ledger: `rmind` notebook cli
+# `rmind`
+
+## :ledger: A notebook cli
 
     Currently in development phase.
 
