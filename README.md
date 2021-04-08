@@ -1,6 +1,4 @@
-<p style="font-size: 3rem"><code>rmind</code></p>
-
-## :ledger: A notebook cli
+# `rmind`
 
     Currently in development phase.
 
@@ -17,6 +15,7 @@
 
 ## About
 
+-   #### :ledger: A notebook cli.
 -   #### Loosely inspired by [`task` warrior](https://github.com/GothenburgBitFactory/taskwarrior).
 
 -   #### The goal is to offer a less feature rich alternative.
