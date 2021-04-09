@@ -27,6 +27,10 @@ class ReminderCrud:
         session.add(reminder)
         session.commit()
 
+    # * -----------------------------------
+    # ! This is having problems. Needs to delete unused tags.
+    # ? And maybe other problems too...
+    # * -----------------------------------
     @staticmethod
     def update_reminder_tag(id: int, old_and_new_tags: tuple[str, str]):
         reminder: Reminder = ReminderCrud.get_by_id(id)
