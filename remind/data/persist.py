@@ -24,12 +24,27 @@ class ReminderCrud:
     @staticmethod
     def update_reminder_tag(id: int, old_and_new_tags: tuple[str, str]):
         reminder: Reminder = ReminderCrud.get_by_id(id)
-        existing_tags = reminder.tags
+        old_tag_name, new_tag_name = old_and_new_tags
         for tag in reminder.tags:
-            if tag.tag_name == old_and_new_tags[0]:
-                tag.tag_name = old_and_new_tags[1]
+            if tag.tag_name == old_tag_name:
+                queried_tag = (
+                    session.query(Tag).filter_by(tag_name=new_tag_name).first()
+                )
+                if queried_tag is not None:
+                    qQ = (
+                        session.query(reminder_tag)
+                        .filter(reminder_tag.c.tag_id == queried_tag.id)
+                        .first()
+                    )
+                    print(f":::::::::::  {qQ} :::::::::::::::")
+
+                    # reminder.tags.append(queried_tag)
+                    # del tag.tag_name
+                else:
+                    tag.tag_name = new_tag_name
                 session.commit()
-                # print(f"old:: {tag.tag_name} new:: {old_and_new_tags[1]}")
+                return
+        print(f"tag {old_tag_name} does not exist for reminder with id {id}.")
 
     @staticmethod
     def get_by_id(id: int) -> Reminder:
