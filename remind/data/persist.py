@@ -22,6 +22,16 @@ class ReminderCrud:
         session.commit()
 
     @staticmethod
+    def update_reminder_tag(id: int, old_and_new_tags: tuple[str, str]):
+        reminder: Reminder = ReminderCrud.get_by_id(id)
+        existing_tags = reminder.tags
+        for tag in reminder.tags:
+            if tag.tag_name == old_and_new_tags[0]:
+                tag.tag_name = old_and_new_tags[1]
+                session.commit()
+                # print(f"old:: {tag.tag_name} new:: {old_and_new_tags[1]}")
+
+    @staticmethod
     def get_by_id(id: int) -> Reminder:
         reminder: Reminder = session.query(Reminder).filter(Reminder.id == id).first()
         return reminder

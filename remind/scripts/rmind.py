@@ -63,11 +63,10 @@ def add(add, tag):
 @click.option(
     "-u",
     "--update",
-    prompt="Type your updated idea",
-    help="Input text directly and skip prompt.",
 )
+@click.option("-t", "--tag", nargs=2)
 @click.option("-v", "--verbose", count=True, help="Show more detail in output.")
-def update(id, update, verbose):
+def update(id, update, verbose, tag):
     """
     Update note/reminder with specified id.
 
@@ -76,8 +75,9 @@ def update(id, update, verbose):
 
     Will prompt for update if -u is omitted.
     """
-    return_status = ReminderCrud.update_by_id(id, update)
-    display_updated(id, return_status, verbose)
+    # return_status = ReminderCrud.update_by_id(id, update)
+    # display_updated(id, return_status, verbose)
+    ReminderCrud.update_reminder_tag(id, tag)
 
 
 @cli.command()
