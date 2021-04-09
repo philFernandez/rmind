@@ -1,9 +1,15 @@
+from sqlalchemy.sql.expression import update
 from remind.model import Reminder, Tag, reminder_tag, session
 from typing import NamedTuple
 
-# from collections import namedtuple
+# !! DELETE THESE BEFORE PACKAGING !!
+# ** Also delete the places that use these **
+from rich.traceback import install
+from rich.console import Console
 
-# RemindersAndTag = namedtuple("RemindersAndTag", ["reminders"], "tag")
+install()
+rp = Console()
+# !! ============================== !!
 
 
 class RemindersAndTag(NamedTuple):
@@ -27,16 +33,25 @@ class ReminderCrud:
         old_tag_name, new_tag_name = old_and_new_tags
         for tag in reminder.tags:
             if tag.tag_name == old_tag_name:
-                queried_tag = (
+                query_for_new_tag = (
                     session.query(Tag).filter_by(tag_name=new_tag_name).first()
                 )
-                if queried_tag is not None:
+                if query_for_new_tag is not None:
+                    old_tag_id = (
+                        session.query(Tag.id)
+                        .filter_by(tag_name=old_tag_name)
+                        .first()[0]
+                    )
                     qQ = (
                         session.query(reminder_tag)
-                        .filter(reminder_tag.c.tag_id == queried_tag.id)
-                        .first()
+                        .filter_by(tag_id=old_tag_id)
+                        .update(
+                            {"tag_id": query_for_new_tag.id},
+                            synchronize_session="fetch",
+                        )
                     )
-                    print(f":::::::::::  {qQ} :::::::::::::::")
+
+                    rp.print(f"{qQ=}")
 
                     # reminder.tags.append(queried_tag)
                     # del tag.tag_name
