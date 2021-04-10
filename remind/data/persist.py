@@ -27,6 +27,7 @@ class ReminderCrud:
         session.add(reminder)
         session.commit()
 
+    # !! THIS SHIT IS BROKE
     # * -----------------------------------
     # ! This is having problems. Needs to delete unused tags.
     # ? And maybe other problems too...
@@ -73,6 +74,18 @@ class ReminderCrud:
         tag_association = session.query(reminder_tag).filter_by(tag_id=tag.id).all()
         if not len(tag_association):
             session.delete(tag)
+        session.commit()
+
+    # ? <== === === === === === === ==>
+    # ! This uses 'tag_reminder' as a helper to add a tag to a reminder
+    # ! Want to use this function in conjuntion with 'remove_tag_from_reminder'
+    # ! For updating a tag to an existing reminder. i.e. to remove a tag and
+    # ! replace it with a new one.
+    # * <- --- --- --- --- --- --- --- ->
+    @staticmethod
+    def add_tag_to_reminder(id: int, tag_name):
+        reminder = session.query(Reminder).filter_by(id=id).first()
+        ReminderCrud.tag_reminder([tag_name], reminder)
         session.commit()
 
     @staticmethod

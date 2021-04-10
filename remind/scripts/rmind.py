@@ -79,7 +79,9 @@ def update(id, update, verbose, tag):
     # return_status = ReminderCrud.update_by_id(id, update)
     # display_updated(id, return_status, verbose)
     # ReminderCrud.update_reminder_tag(id, tag)
-    ReminderCrud.remove_tag_from_reminder(id, tag)
+
+    # ReminderCrud.remove_tag_from_reminder(id, tag)
+    ReminderCrud.add_tag_to_reminder(id, tag)
 
 
 @cli.command()
