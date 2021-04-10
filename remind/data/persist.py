@@ -1,4 +1,3 @@
-from sqlalchemy.sql.expression import update
 from remind.model import Reminder, Tag, reminder_tag, session
 from typing import NamedTuple
 
