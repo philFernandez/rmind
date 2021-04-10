@@ -81,7 +81,7 @@ def update(id, update, verbose, tag):
     # ReminderCrud.update_reminder_tag(id, tag)
 
     # ReminderCrud.remove_tag_from_reminder(id, tag)
-    ReminderCrud.add_tag_to_reminder(id, tag)
+    ReminderCrud.tag_reminder_by_id(id, tag)
 
 
 @cli.command()

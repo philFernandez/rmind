@@ -82,7 +82,7 @@ class ReminderCrud:
     # ! replace it with a new one.
     # * <- --- --- --- --- --- --- --- ->
     @staticmethod
-    def add_tag_to_reminder(id: int, tag_name):
+    def tag_reminder_by_id(id: int, tag_name: str):
         reminder = session.query(Reminder).filter_by(id=id).first()
         ReminderCrud.tag_reminder([tag_name], reminder)
         session.commit()
@@ -149,7 +149,7 @@ class ReminderCrud:
         return reminders_and_tag
 
     @staticmethod
-    def tag_reminder(tags: list[Tag], reminder: Reminder):
+    def tag_reminder(tags: list[str], reminder: Reminder):
         for tag in tags:
             queried_tag = session.query(Tag).filter_by(tag_name=tag).first()
             if queried_tag is None:
