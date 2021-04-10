@@ -66,6 +66,13 @@ class ReminderCrud:
         print(f"tag {old_tag_name} does not exist for reminder with id {id}.")
 
     @staticmethod
+    def remove_tag_from_reminder(id: int, tag_name: str):
+        tag = session.query(Tag).filter_by(tag_name=tag_name).first()
+        reminder = session.query(Reminder).filter_by(id=id).first()
+        reminder.tags.remove(tag)
+        session.commit()
+
+    @staticmethod
     def get_by_id(id: int) -> Reminder:
         reminder: Reminder = session.query(Reminder).filter(Reminder.id == id).first()
         return reminder

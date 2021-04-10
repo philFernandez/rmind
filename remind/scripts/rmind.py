@@ -64,7 +64,8 @@ def add(add, tag):
     "-u",
     "--update",
 )
-@click.option("-t", "--tag", nargs=2)
+# @click.option("-t", "--tag", nargs=2)
+@click.option("-t", "--tag")
 @click.option("-v", "--verbose", count=True, help="Show more detail in output.")
 def update(id, update, verbose, tag):
     """
@@ -77,7 +78,8 @@ def update(id, update, verbose, tag):
     """
     # return_status = ReminderCrud.update_by_id(id, update)
     # display_updated(id, return_status, verbose)
-    ReminderCrud.update_reminder_tag(id, tag)
+    # ReminderCrud.update_reminder_tag(id, tag)
+    ReminderCrud.remove_tag_from_reminder(id, tag)
 
 
 @cli.command()

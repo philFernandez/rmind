@@ -6,3 +6,4 @@ emoji*
 .env
 *.db
 test
+Notes.md
