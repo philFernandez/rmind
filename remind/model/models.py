@@ -23,11 +23,12 @@ APP_MODE = os.getenv("APP_MODE")
 # Program execution will take place from "test/test_rmind.py".
 # If we are not in "test" mode ".rmind.db" in the user's home
 # directory is used for normal operations.
-cache = (
-    ".test.db"
-    if APP_MODE == "test"
-    else os.path.join(os.path.expanduser("~"), ".rmind.db")
-)
+if APP_MODE == "test":
+    cache = ".test.db"
+elif APP_MODE == "dev":
+    cache = "TEST.db"
+else:
+    cache = os.path.join(os.path.expanduser("~"), ".rmind.db")
 
 engine = create_engine(f"sqlite:///{cache}")
 Session = sessionmaker()
