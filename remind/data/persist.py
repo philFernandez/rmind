@@ -26,45 +26,6 @@ class ReminderCrud:
         session.add(reminder)
         session.commit()
 
-    # !! THIS SHIT IS BROKE
-    # * -----------------------------------
-    # ! This is having problems. Needs to delete unused tags.
-    # ? And maybe other problems too...
-    # * -----------------------------------
-    @staticmethod
-    def update_reminder_tag(id: int, old_and_new_tags: tuple[str, str]):
-        reminder: Reminder = ReminderCrud.get_by_id(id)
-        old_tag_name, new_tag_name = old_and_new_tags
-        for tag in reminder.tags:
-            if tag.tag_name == old_tag_name:
-                query_for_new_tag = (
-                    session.query(Tag).filter_by(tag_name=new_tag_name).first()
-                )
-                if query_for_new_tag is not None:
-                    old_tag_id = (
-                        session.query(Tag.id)
-                        .filter_by(tag_name=old_tag_name)
-                        .first()[0]
-                    )
-                    qQ = (
-                        session.query(reminder_tag)
-                        .filter_by(tag_id=old_tag_id)
-                        .update(
-                            {"tag_id": query_for_new_tag.id},
-                            synchronize_session="fetch",
-                        )
-                    )
-
-                    rp.print(f"{qQ=}")
-
-                    # reminder.tags.append(queried_tag)
-                    # del tag.tag_name
-                else:
-                    tag.tag_name = new_tag_name
-                session.commit()
-                return
-        print(f"tag {old_tag_name} does not exist for reminder with id {id}.")
-
     @staticmethod
     def remove_tag_from_reminder(id: int, tag_name: str):
         tag = session.query(Tag).filter_by(tag_name=tag_name).first()

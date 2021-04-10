@@ -7,3 +7,4 @@ emoji*
 *.db
 test
 Notes.md
+*.diff
