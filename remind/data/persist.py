@@ -70,6 +70,9 @@ class ReminderCrud:
         tag = session.query(Tag).filter_by(tag_name=tag_name).first()
         reminder = session.query(Reminder).filter_by(id=id).first()
         reminder.tags.remove(tag)
+        tag_association = session.query(reminder_tag).filter_by(tag_id=tag.id).all()
+        if not len(tag_association):
+            session.delete(tag)
         session.commit()
 
     @staticmethod
