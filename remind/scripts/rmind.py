@@ -60,11 +60,7 @@ def add(add, tag):
 
 @cli.command()
 @click.argument("id", type=int)
-@click.option(
-    "-u",
-    "--update",
-)
-# @click.option("-t", "--tag", nargs=2)
+@click.option("-u", "--update", type=str)
 @click.option("-td", "--tag-delete", type=str)
 @click.option("-ta", "--tag-add", type=str)
 @click.option("-v", "--verbose", count=True, help="Show more detail in output.")
@@ -80,6 +76,7 @@ def update(id, update, verbose, tag_delete, tag_add):
     # return_status = ReminderCrud.update_by_id(id, update)
     # display_updated(id, return_status, verbose)
     # ReminderCrud.update_reminder_tag(id, tag)
+
     if tag_add is not None:
         ReminderCrud.tag_reminder_by_id(id, tag_add)
     if tag_delete is not None:
