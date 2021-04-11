@@ -54,16 +54,29 @@ def add(add, tag):
 
 @cli.command()
 @click.argument("id", type=int)
-@click.option("-u", "--update", type=str)
-@click.option("-td", "--tag-delete", type=str)
-@click.option("-ta", "--tag-add", type=str)
-@click.option("-v", "--verbose", count=True, help="Show more detail in output.")
+@click.option("-u", "--update", type=str, help="Update contents of specified reminder.")
+@click.option(
+    "-td", "--tag-delete", type=str, help="Remove a tag from specified reminder."
+)
+@click.option("-ta", "--tag-add", type=str, help="Add a new tag to specified reminder.")
+# ! Maybe VERBOSE doesn't make sense here??
+# // verbose
+@click.option(
+    "-v",
+    "--verbose",
+    count=True,
+    help="Show more detail in output. -v or -vv",
+)
 def update(id, update, verbose, tag_delete, tag_add):
     """
-    Update note/reminder with specified id.
+    Update a reminder specified by its ID.
 
     ex:
-    `rmind upate 1 -u 'Some updated note'`
+    `rmind update 1 -u 'Some updated note'`,
+
+    `rmind update 1 -ta new_tag`,
+
+    `rmind update 1 -td tag_to_remove`,
 
     Will prompt for update if -u is omitted.
     """
