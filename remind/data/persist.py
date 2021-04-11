@@ -30,18 +30,26 @@ class ReminderCrud:
     def remove_tag_from_reminder(id: int, tag_name: str):
         tag = session.query(Tag).filter_by(tag_name=tag_name).first()
         reminder = session.query(Reminder).filter_by(id=id).first()
-        reminder.tags.remove(tag)
-        tag_association = session.query(reminder_tag).filter_by(tag_id=tag.id).all()
-        if not len(tag_association):
-            session.delete(tag)
-        session.commit()
+        if tag is not None and reminder is not None:
+            reminder.tags.remove(tag)
+            tag_association = session.query(reminder_tag).filter_by(tag_id=tag.id).all()
+            if not len(tag_association):
+                session.delete(tag)
+            session.commit()
+        else:
+            rp.rule(
+                title=":no_entry: [bold white]Invalid Entry[/bold white] :no_entry:",
+                style="red",
+            )
+            if tag is None:
+                rp.print(
+                    f"[bold]Tag [red]{tag_name}[/red] is not associated with given the reminder."
+                )
+            if reminder is None:
+                rp.print(f"[bold]Reminder with id [red]{id}[/red] does not exist.")
 
-    # ? <== === === === === === === ==>
-    # ! This uses 'tag_reminder' as a helper to add a tag to a reminder
-    # ! Want to use this function in conjuntion with 'remove_tag_from_reminder'
-    # ! For updating a tag to an existing reminder. i.e. to remove a tag and
-    # ! replace it with a new one.
-    # * <- --- --- --- --- --- --- --- ->
+            return None
+
     @staticmethod
     def tag_reminder_by_id(id: int, tag_name: str):
         reminder = session.query(Reminder).filter_by(id=id).first()

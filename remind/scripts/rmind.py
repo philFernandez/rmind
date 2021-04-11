@@ -2,13 +2,7 @@ from typing import Union
 import click
 from remind.model import Reminder
 from remind.data import ReminderCrud, RemindersAndTag
-from remind.view import (
-    ListOfRemindersView,
-    ListOfRemindersAndTagView,
-    display_deleted,
-    display_updated,
-    empty_view,
-)
+from remind.view import ListOfRemindersView, ListOfRemindersAndTagView, ViewUtils
 
 context_settings = dict(help_option_names=["-h", "--help"])
 
@@ -29,7 +23,7 @@ def cli(ctx, tag, verbose):
             if len(reminders):
                 ListOfRemindersView(reminders, verbose).render_table()
             else:
-                empty_view()
+                ViewUtils.empty_view()
         else:
             reminders_and_tags: list[RemindersAndTag] = ReminderCrud.filter_by_tags(tag)
             ListOfRemindersAndTagView(reminders_and_tags, verbose).render_table()
@@ -73,18 +67,16 @@ def update(id, update, verbose, tag_delete, tag_add):
 
     Will prompt for update if -u is omitted.
     """
-    # return_status = ReminderCrud.update_by_id(id, update)
-    # display_updated(id, return_status, verbose)
-    # ReminderCrud.update_reminder_tag(id, tag)
-
+    if update is not None:
+        return_status = ReminderCrud.update_by_id(id, update)
+        ViewUtils.display_updated(id, return_status, verbose)
     if tag_add is not None:
         ReminderCrud.tag_reminder_by_id(id, tag_add)
     if tag_delete is not None:
         ReminderCrud.remove_tag_from_reminder(id, tag_delete)
 
-    # ! New ones for remove and add tag
-    # * ReminderCrud.remove_tag_from_reminder(id, tag)
-    # * ReminderCrud.tag_reminder_by_id(id, tag)
+    if update is tag_add is tag_delete is None:
+        ViewUtils.no_opps_update_error()
 
 
 @cli.command()
@@ -99,7 +91,7 @@ def delete(id: int, verbose: bool):
     """
     deleted_reminder: Union[Reminder, None] = ReminderCrud.delete_by_id(id)
     if deleted_reminder is not None:
-        display_deleted(deleted_reminder, verbose)
+        ViewUtils.display_deleted(deleted_reminder, verbose)
 
 
 def main():

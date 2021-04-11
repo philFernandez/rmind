@@ -42,28 +42,47 @@ class ListOfRemindersAndTagView:
             rc.print(panel, justify="left")
 
 
-def display_updated(id: int, status: int, verbose: bool):
-    if status:
-        rc.rule(":+1: [bold white]Updated", style="green")
-        reminder: Reminder = ReminderCrud.get_by_id(id)
-        table = ReminderTable([reminder], verbose=verbose).get_table()
+class ViewUtils:
+    @staticmethod
+    def display_updated(id: int, status: int, verbose: bool):
+        if status:
+            rc.rule(":+1: [bold white]Updated", style="green")
+            reminder: Reminder = ReminderCrud.get_by_id(id)
+            table = ReminderTable([reminder], verbose=verbose).get_table()
+            rc.print(table)
+        else:
+            rc.rule(":-1: [bold white]Not Updated", style="yellow")
+            rc.print(f"ID {id} does not exist.")
+
+    @staticmethod
+    def display_deleted(reminder: Reminder, verbose: bool):
+        r: list[Reminder] = [reminder]
+        table = ReminderTable(r, verbose=verbose).get_table()
+        rc.rule(title=":litter_in_bin_sign: [bold white]Deleted", style="red")
         rc.print(table)
-    else:
-        rc.rule(":-1: [bold white]Not Updated", style="yellow")
-        rc.print(f"ID {id} does not exist.")
 
+    @staticmethod
+    def no_opps_update_error():
+        rc.rule(title=":robot: [bold white]Attention :robot:", style="yellow")
+        rc.print(
+            "[bold #05ff05]update[/ bold #05ff05] [bold white]command requires at least one of these options."
+        )
+        rc.print(
+            """\
+:arrow_down:   :arrow_down:
+Options:
+  -u,  --update TEXT       Updated text for specified reminder
+  -td, --tag-delete TEXT   Tag to delete association with specified reminder
+  -ta, --tag-add TEXT      Tag to add association with specified reminder
+  -h,  --help              Show help for update command
+            """
+        )
 
-def display_deleted(reminder: Reminder, verbose: bool):
-    r: list[Reminder] = [reminder]
-    table = ReminderTable(r, verbose=verbose).get_table()
-    rc.rule(title=":litter_in_bin_sign: [bold white]Deleted", style="red")
-    rc.print(table)
-
-
-def empty_view():
-    messages = [
-        ":dog2: Wow, such empty! :dog2:",
-        ":crescent_moon: Nothing to see here :crescent_moon:",
-    ]
-    idx = randint(0, len(messages) - 1)
-    rc.print(messages[idx])
+    @staticmethod
+    def empty_view():
+        messages = [
+            ":dog2: Wow, such empty! :dog2:",
+            ":crescent_moon: Nothing to see here :crescent_moon:",
+        ]
+        idx = randint(0, len(messages) - 1)
+        rc.print(messages[idx])
