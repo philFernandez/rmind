@@ -42,7 +42,7 @@ class ReminderTable:
                     f"{reminder.id}",
                     reminder.description,
                     f"{reminder.entry_date.strftime('%D')}",
-                    f"{reminder.entry_date.strftime('%I:%m %p')}",
+                    f"{reminder.entry_date.strftime('%I:%M %p')}",
                 )
         elif self.verbose >= 2:
             self.table.add_column("Date")
@@ -55,7 +55,7 @@ class ReminderTable:
                     f"{reminder.id}",
                     reminder.description,
                     f"{reminder.entry_date.strftime('%D')}",
-                    f"{reminder.entry_date.strftime('%I:%m %p')}",
+                    f"{reminder.entry_date.strftime('%I:%M %p')}",
                     f"{tags}",
                 )
         else:
