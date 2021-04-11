@@ -5,6 +5,5 @@ emoji*
 .mypy_cache
 .env
 *.db
-test
 Notes.md
 *.diff
