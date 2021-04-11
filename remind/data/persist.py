@@ -1,9 +1,14 @@
 from remind.model import Reminder, Tag, reminder_tag, session
 from typing import NamedTuple
 
-# from collections import namedtuple
+# !! DELETE THESE BEFORE PACKAGING !!
+# ** Also delete the places that use these **
+from rich.traceback import install
+from rich.console import Console
 
-# RemindersAndTag = namedtuple("RemindersAndTag", ["reminders"], "tag")
+install()
+rp = Console()
+# !! ============================== !!
 
 
 class RemindersAndTag(NamedTuple):
@@ -19,6 +24,28 @@ class ReminderCrud:
     @staticmethod
     def save(reminder: Reminder):
         session.add(reminder)
+        session.commit()
+
+    @staticmethod
+    def remove_tag_from_reminder(id: int, tag_name: str):
+        tag = session.query(Tag).filter_by(tag_name=tag_name).first()
+        reminder = session.query(Reminder).filter_by(id=id).first()
+        reminder.tags.remove(tag)
+        tag_association = session.query(reminder_tag).filter_by(tag_id=tag.id).all()
+        if not len(tag_association):
+            session.delete(tag)
+        session.commit()
+
+    # ? <== === === === === === === ==>
+    # ! This uses 'tag_reminder' as a helper to add a tag to a reminder
+    # ! Want to use this function in conjuntion with 'remove_tag_from_reminder'
+    # ! For updating a tag to an existing reminder. i.e. to remove a tag and
+    # ! replace it with a new one.
+    # * <- --- --- --- --- --- --- --- ->
+    @staticmethod
+    def tag_reminder_by_id(id: int, tag_name: str):
+        reminder = session.query(Reminder).filter_by(id=id).first()
+        ReminderCrud.tag_reminder([tag_name], reminder)
         session.commit()
 
     @staticmethod
@@ -83,7 +110,7 @@ class ReminderCrud:
         return reminders_and_tag
 
     @staticmethod
-    def tag_reminder(tags: list[Tag], reminder: Reminder):
+    def tag_reminder(tags: list[str], reminder: Reminder):
         for tag in tags:
             queried_tag = session.query(Tag).filter_by(tag_name=tag).first()
             if queried_tag is None:
