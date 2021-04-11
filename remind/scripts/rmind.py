@@ -65,9 +65,10 @@ def add(add, tag):
     "--update",
 )
 # @click.option("-t", "--tag", nargs=2)
-@click.option("-t", "--tag")
+@click.option("-td", "--tag-delete", type=str)
+@click.option("-ta", "--tag-add", type=str)
 @click.option("-v", "--verbose", count=True, help="Show more detail in output.")
-def update(id, update, verbose, tag):
+def update(id, update, verbose, tag_delete, tag_add):
     """
     Update note/reminder with specified id.
 
@@ -79,9 +80,14 @@ def update(id, update, verbose, tag):
     # return_status = ReminderCrud.update_by_id(id, update)
     # display_updated(id, return_status, verbose)
     # ReminderCrud.update_reminder_tag(id, tag)
+    if tag_add is not None:
+        ReminderCrud.tag_reminder_by_id(id, tag_add)
+    if tag_delete is not None:
+        ReminderCrud.remove_tag_from_reminder(id, tag_delete)
 
-    # ReminderCrud.remove_tag_from_reminder(id, tag)
-    ReminderCrud.tag_reminder_by_id(id, tag)
+    # ! New ones for remove and add tag
+    # * ReminderCrud.remove_tag_from_reminder(id, tag)
+    # * ReminderCrud.tag_reminder_by_id(id, tag)
 
 
 @cli.command()
