@@ -12,6 +12,7 @@
     -   [Delete](#delete)
 -   [Install Tab Completion](#install-tab-completion)
 -   [Motivation](#motivation)
+- [Standing on the Shoulder's of Giants](#standing-on-the-shoulders-of-giants)
 
 ## About
 
@@ -100,3 +101,16 @@ rather be able to strip out. I just need to be able to capture my ideas in a
 sentence or two and have the option to add tags. That way
 I can come back later and query the saved data and filter by tag(s). That is
 what this project aims to provide.
+
+
+## Standing on the Shoulder's of Giants
+
+Without the hard work and passion of those who contribute their time and talent to open source,
+this project wouldn't have been possible for me. These projects in particular
+play a huge role in making *this* project work.
+
+| Project | How I used it |
+|---------|---------------|
+| [rich](https://github.com/willmcgugan/rich)    | Tables, colors, styling, emoji. CLI eye candy in general. |
+| [click](https://github.com/pallets/click)    | CLI options and arguments parsing, help messages and tab completion. |
+| [sqlalchemy](https://github.com/sqlalchemy/sqlalchemy) | Mapping application objects to sql data, and handling the persistence and lookup of said data. |

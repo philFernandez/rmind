@@ -37,6 +37,8 @@ class ReminderCrud:
                 session.delete(tag)
             session.commit()
         else:
+            # TODO
+            # !! Get rid of this VIEW stuff here. MOVE IT to view.py !!
             rp.rule(
                 title=":no_entry: [bold white]Invalid Entry[/bold white] :no_entry:",
                 style="red",
@@ -103,6 +105,8 @@ class ReminderCrud:
             try:
                 tag_id = session.query(Tag.id).filter_by(tag_name=tag).first()[0]
             except TypeError:
+                # TODO
+                # !! Get rid of this VIEW stuff here. MOVE IT to view.py !!
                 print(f"tag {tag} does not exist.")
                 continue
             reminders_and_tag.append(
