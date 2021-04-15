@@ -31,6 +31,7 @@ pytest==6.2.3
 python-dotenv==0.16.0
 regex==2021.3.17
 rich==10.0.1
+-e git+git@github.com:philFernandez/rmind.git@d436bb6f95c1b5e2153823d07aede872fa3d9256#egg=rmind
 SQLAlchemy==1.4.4
 toml==0.10.2
 typed-ast==1.4.2
