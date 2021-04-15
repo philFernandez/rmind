@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-
-/Users/philthy/.pyenv/versions/rmind/bin/python /Users/philthy/Source_Code/Python/rmind/test/test_rmind.py && \
-    /Users/philthy/.pyenv/versions/rmind/bin/pytest /Users/philthy/Source_Code/Python/rmind/test/test_rich.py
-
