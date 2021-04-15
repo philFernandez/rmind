@@ -3,7 +3,6 @@ rmind.egg-info
 .vscode
 emoji*
 .mypy_cache
-.env
 *.db
 Notes.md
 *.diff
