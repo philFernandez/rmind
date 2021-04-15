@@ -1,3 +1,6 @@
+
+[![philFernandez](https://circleci.com/gh/philFernandez/rmind.svg?style=shield)](https://app.circleci.com/pipelines/github/philFernandez/rmind)
+
 ![Logo](./img/logo/logo.png)
 ---
 
