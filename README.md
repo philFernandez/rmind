@@ -1,6 +1,5 @@
-# `rmind`
-
-    Currently in development phase.
+![Logo](./img/logo/logo.png)
+---
 
 ### TOC
 
@@ -14,20 +13,32 @@
 -   [Motivation](#motivation)
 - [Standing on the Shoulder's of Giants](#standing-on-the-shoulders-of-giants)
 
+---
+
+![Tables](./img/screenshots/Tables.png)
+
+![Tags](./img/screenshots/Tags.png)
+
 ## About
+#### :ledger: A notebook CLI
 
--   #### :ledger: A notebook cli.
--   #### Loosely inspired by [`task` warrior](https://github.com/GothenburgBitFactory/taskwarrior).
+`rmind` is loosely inspired by another CLI called
+[taskwarrior](https://github.com/GothenburgBitFactory/taskwarrior). The goal
+of `rmind` is to provide a more streamlined list oriented application, that
+takes advantage of modern CLI libraries to pile on the command line eye candy
+(tastefully of course :wink:). Taskwarrior is great, and I will continue to
+use it for keeping track of structured tasks, but IMHO it isn't ideal for
+keeping track of random ideas for future reference. Thats why I made `rmind`.
+As a person who spends *allot* of time in a terminal, I wanted a place to
+store my ideas quickly without having to take my hands off the keyboard, and
+without needing to open another application, while also having something
+that's powerful and nice to look at. `rmind` is my solution to that problem.
 
--   #### The goal is to offer a less feature rich alternative.
+#### Features
 
--   #### Something for quickly jotting down and organizing concise ideas with user defined tags.
-
--   #### Ideas can later be recalled and filtered by tag(s) or as a complete list.
-
--   #### Using tags is optional. It can be used as an idea dump without categories.
-
--   #### The goal is to focus on getting your ideas recorded and categorized without focusing on the tool you're using to do it.
+- Organize notes with tags for easy categorization and batch retrieval
+- Embedded inline markup, powered by [rich](https://github.com/willmcgugan/rich), for coloring, styling, and emoji-ing your notes
+- Easily edit all aspects of any entry at any time
 
 ## Usage
 
@@ -78,7 +89,7 @@ Add one of the following to your shell's startup file.
 
 ## Motivation
 
-I'm making this cli for myself so that I can have a simple place to _quickly_
+I'm making this CLI for myself so that I can have a simple place to _quickly_
 jot down my ideas in a unified place such that I can revisit them later
 without having to remember too much. I previously used note taking
 applications, like [vimwiki](https://github.com/vimwiki/vimwiki), OneNote,
