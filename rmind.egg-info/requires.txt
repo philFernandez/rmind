@@ -1,0 +1,4 @@
+Click
+rich
+sqlalchemy
+python-dotenv
