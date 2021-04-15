@@ -62,6 +62,13 @@ class ViewUtils:
         rc.print(table)
 
     @staticmethod
+    def display_added(reminder: Reminder, verbose: bool):
+        r: list[Reminder] = [reminder]
+        table = ReminderTable(r, verbose=verbose).get_table()
+        rc.rule(title=":card_index_dividers:  [bold white]Saved", style="green")
+        rc.print(table)
+
+    @staticmethod
     def no_opps_update_error():
         rc.rule(title=":robot: [bold white]Attention :robot:", style="yellow")
         rc.print(

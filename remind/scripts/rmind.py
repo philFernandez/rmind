@@ -37,7 +37,10 @@ def cli(ctx, tag, verbose):
     help="Input text directly and skip prompt.",
 )
 @click.option("-t", "--tag", help="Add tag(s) to your note.", multiple=True)
-def add(add, tag):
+@click.option(
+    "-v", "--verbose", count=True, help="Show more detail in output. -v or -vv"
+)
+def add(add, tag, verbose):
     """
     Add a new note/reminder.
 
@@ -50,6 +53,7 @@ def add(add, tag):
     if len(tag):
         ReminderCrud.tag_reminder(tag, reminder)
     ReminderCrud.save(reminder)
+    ViewUtils.display_added(reminder, verbose)
 
 
 @cli.command()
