@@ -8,7 +8,7 @@ with open(path.join(project_root, "PYPI_README.md"), encoding="utf-8") as f:
 
 setup(
     name="rmind",
-    version="0.1a1",
+    version="0.0.1",
     description="A note taking cli",
     long_description=long_description,
     long_description_content_type="text/markdown",
