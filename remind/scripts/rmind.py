@@ -111,5 +111,14 @@ def delete(id: int, verbose: bool):
         ViewUtils.display_deleted(deleted_reminder, verbose)
 
 
+@cli.command()
+def tags():
+    """
+    List all tags currently saved.
+    """
+    all_tags = ReminderCrud.get_all_tag_names()
+    ViewUtils.display_tag_names(all_tags)
+
+
 def main():
     cli()
