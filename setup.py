@@ -24,7 +24,7 @@ setup(
     packages=find_packages(),
     license="MIT",
     include_package_data=True,
-    install_requires=["Click", "rich==10.1.0", "sqlalchemy", "python-dotenv"],
+    install_requires=["Click", "rich", "sqlalchemy", "python-dotenv"],
     python_requires=">=3.7",
     entry_points="""
         [console_scripts]
