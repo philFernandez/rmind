@@ -22,6 +22,13 @@ class ReminderCrud:
         return session.query(Reminder).all()
 
     @staticmethod
+    def get_all_tag_names() -> list[str]:
+        tag_names = []
+        for tag in session.query(Tag).all():
+            tag_names.append(f"{tag.tag_name}")
+        return tag_names
+
+    @staticmethod
     def save(reminder: Reminder):
         session.add(reminder)
         session.commit()

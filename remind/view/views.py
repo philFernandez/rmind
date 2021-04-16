@@ -1,9 +1,8 @@
 from dataclasses import dataclass
 
-from rich.table import Table
 from remind.data.persist import RemindersAndTag, ReminderCrud
 from remind.richcontent import ReminderTable, rc
-from remind.model import Reminder, Tag
+from remind.model import Reminder
 from rich.panel import Panel
 from random import randint
 
@@ -67,6 +66,25 @@ class ViewUtils:
         table = ReminderTable(r, verbose=verbose).get_table()
         rc.rule(title=":card_index_dividers:  [bold white]Saved", style="green")
         rc.print(table)
+
+    @staticmethod
+    def display_tag_names(tag_names: list[str]):
+        tags = ""
+        for tag_name in tag_names:
+            tags += f"{tag_name}\n"
+
+        # Try to display these in several columns instead of 1 column
+        rc.print(
+            Panel(
+                tags.strip(),
+                expand=False,
+                title=":label:  [bold white]Tags",
+                title_align="left",
+                padding=(1, 3),
+                border_style="blue",
+            ),
+            style="bold white",
+        )
 
     @staticmethod
     def no_opps_update_error():
