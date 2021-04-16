@@ -1,5 +1,6 @@
 LICENSE
 README.md
+pyproject.toml
 setup.py
 remind/__init__.py
 remind/data/__init__.py

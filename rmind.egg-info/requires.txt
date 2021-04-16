@@ -1,4 +1,4 @@
 Click
-rich
+rich==10.1.0
 sqlalchemy
 python-dotenv
