@@ -12,6 +12,7 @@
     -   [Read](#read)
     -   [Update](#update)
     -   [Delete](#delete)
+- [Install Pre-release](#install-pre-release)
 -   [Install Tab Completion](#install-tab-completion)
 -   [Motivation](#motivation)
 - [Standing on the Shoulder's of Giants](#standing-on-the-shoulders-of-giants)
@@ -74,6 +75,16 @@ that's powerful and nice to look at. `rmind` is my solution to that problem.
     -   `rmind delete [id]`
         -   deletes entry with id `[id]` if the id exists in the database.
         -   displays output letting user know if update succeeded.
+
+## Install Pre-Release
+`pip install https://github.com/philFernandez/rmind/archive/refs/tags/v0.1a2.tar.gz`
+
+**Or download the [release archive](https://github.com/philFernandez/rmind/releases/tag/v0.1a2)**
+
+
+The pre-release is definitely usable. The --help messages aren't completely refined, and there
+are still more features and polishing that will show up in the first major release. There will
+also be install options for at least PyPi, and probably Homebrew, and possibly more.
 
 ## Install Tab Completion
 
