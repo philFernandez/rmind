@@ -121,7 +121,7 @@ projects, and steps that need to be crossed off a list as completed, but I
 still feel like I need something for just jotting down random ideas that pop
 up, or random cool things that I discover and want to revisit. I can kind of
 make [task warrior](https://github.com/GothenburgBitFactory/taskwarrior) work
-for me in that way, but there are still allot of features in the way that I'd
+for me in that way, but there are still a lot of features in the way that I'd
 rather be able to strip out. I just need to be able to capture my ideas in a
 sentence or two and have the option to add tags. That way
 I can come back later and query the saved data and filter by tag(s). That is
