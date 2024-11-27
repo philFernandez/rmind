@@ -33,7 +33,7 @@ takes advantage of modern CLI libraries to pile on the command line eye candy
 (tastefully of course :wink:). Taskwarrior is great, and I will continue to
 use it for keeping track of structured tasks, but IMHO it isn't ideal for
 keeping track of random ideas for future reference. Thats why I made `rmind`.
-As a person who spends *allot* of time in a terminal, I wanted a place to
+As a person who spends *a lot* of time in a terminal, I wanted a place to
 store my ideas quickly without having to take my hands off the keyboard, and
 without needing to open another application, while also having something
 that's powerful and nice to look at. `rmind` is my solution to that problem.
