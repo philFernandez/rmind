@@ -77,9 +77,9 @@ that's powerful and nice to look at. `rmind` is my solution to that problem.
         -   displays output letting user know if update succeeded.
 
 ## Install Pre-Release
-`pip install https://github.com/philFernandez/rmind/archive/refs/tags/v0.1a2.tar.gz`
+`pip install https://github.com/philFernandez/rmind/archive/refs/tags/v0.2a2.zip`
 
-**Or download the [release archive](https://github.com/philFernandez/rmind/releases/tag/v0.1a2)**
+**Or download the [release archive](https://github.com/philFernandez/rmind/releases/tag/v0.2a2)**
 
 
 The pre-release is definitely usable. The --help messages aren't completely refined, and there
