@@ -130,9 +130,10 @@ class ReminderCrud:
 
     @staticmethod
     def tag_reminder(tags: list[str], reminder: Reminder):
-        for tag in tags:
-            queried_tag = session.query(Tag).filter_by(tag_name=tag).first()
-            if queried_tag is None:
-                queried_tag = Tag(tag_name=tag)
+        with session.no_autoflush:
+            for tag in tags:
+                queried_tag = session.query(Tag).filter_by(tag_name=tag).first()
+                if queried_tag is None:
+                    queried_tag = Tag(tag_name=tag)
 
-            reminder.tags.append(queried_tag)
+                reminder.tags.append(queried_tag)
