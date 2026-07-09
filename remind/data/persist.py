@@ -109,13 +109,12 @@ class ReminderCrud:
     def filter_by_tags(tags: tuple[str]) -> list[RemindersAndTag]:
         reminders_and_tag: list[RemindersAndTag] = []
         for tag in tags:
-            try:
-                tag_id = session.query(Tag.id).filter_by(tag_name=tag).first()[0]
-            except TypeError:
-                # TODO
-                # !! Get rid of this VIEW stuff here. MOVE IT to view.py !!
+            tag_id = session.query(Tag.id).filter_by(tag_name=tag).scalar()
+
+            if tag_id is None:
                 print(f"tag {tag} does not exist.")
                 continue
+
             reminders_and_tag.append(
                 RemindersAndTag(
                     session.query(Reminder)
