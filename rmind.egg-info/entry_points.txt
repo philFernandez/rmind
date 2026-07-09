@@ -1,4 +1,2 @@
-
-        [console_scripts]
-        rmind=remind.scripts.rmind:main
-    
+[console_scripts]
+rmind = remind.scripts.rmind:main
