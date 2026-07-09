@@ -139,15 +139,6 @@ Rich supports a lightweight markup syntax called **Console Markup**. It uses squ
 
 #### Basic Usage
 
-```python
-from rich import print
-
-print("[bold]Bold text[/bold]")
-print("[red]Red text[/red]")
-print("[bold red]Bold red text[/bold red]")
-print("[underline blue]Underlined blue text[/underline blue]")
-```
-
 #### Common Text Styles
 
 ```text
@@ -232,17 +223,6 @@ Rich can render emoji codes using colon-delimited names:
 :heavy_check_mark: Done
 :rocket: Launch
 ```
-
-Example:
-
-```python
-from rich import print
-
-print(":warning: [bold yellow]Warning[/bold yellow]")
-print(":heavy_check_mark: [green]Reminder added[/green]")
-print(":x: [bold red]Error[/bold red]")
-```
-
 #### Common Emoji Codes
 
 | Code                       | Output meaning      |
